@@ -19,6 +19,7 @@ fn main() {
             "mk" => nova_tarefa(&mut tarefas),
             "rm" => remover_tarefa(&mut tarefas),
             "ls" => listar_tarefas(&tarefas),
+            "n" => count(&tarefas),
             "exit" => {
                 println!("Encerrando...");
                 break;
@@ -34,6 +35,7 @@ fn help() {
 * mk - Criar nova tarefa.
 * rm - Remover tarefa.
 * ls - Listar tarefas.
+* n - Retornar numero de tarefas.
 * exit - Fechar programa"
     );
 }
@@ -52,6 +54,10 @@ fn listar_tarefas(tarefas: &[String]) {
     for tarefa in tarefas {
         println!("* {tarefa}");
     }
+}
+
+fn count(tarefas: &[String]) {
+    println!("\nTotal de tarefas: {}", tarefas.len());
 }
 
 fn remover_tarefa(tarefas: &mut Vec<String>) {
