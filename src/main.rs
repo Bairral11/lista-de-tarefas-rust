@@ -1,4 +1,4 @@
-use std::io::stdin;
+use std::io::{self, Write};
 
 fn main() {
     let _entrada = String::new();
@@ -6,16 +6,19 @@ fn main() {
     
     loop {
         let mut op = String::new();
-        
-        println!("\nOperações: \n* mk - criar nova tarefa\n* ls - listar tarefas\n* rm - Remover uma tarefa\n* exit - fecha o programa\n");
-        stdin()
+
+        print!("\n> ");
+        io::stdout().flush().unwrap();
+
+        io::stdin()
             .read_line(&mut op)
             .expect("entrada inválida\n");
 
         match op.trim() {
+            "help" => help(),
             "mk" => nova_tarefa(&mut tarefas),
-            "ls" => listar_tarefas(&tarefas),
             "rm" => remover_tarefa(&mut tarefas),
+            "ls" => listar_tarefas(&tarefas),
             "exit" => {
                 println!("Encerrando...");
                 break;
@@ -25,12 +28,23 @@ fn main() {
     }
 }
 
+fn help() {
+    println!("
+* help - Lista comandos.
+* mk - Criar nova tarefa.
+* rm - Remover tarefa.
+* ls - Listar tarefas.
+* exit - Fechar programa"
+    );
+}
+
 fn nova_tarefa(tarefas: &mut Vec<String>) {
     let mut entrada = String::new();
 
-    println!("Insira sua tarefa: ");
-    stdin().read_line(&mut entrada).expect("Entrada inválida");
+    print!("\nInsira sua tarefa: ");
+    io::stdout().flush().unwrap();
 
+    io::stdin().read_line(&mut entrada).expect("Entrada inválida");
     tarefas.push(entrada.trim().to_string());
 }
 
@@ -43,16 +57,18 @@ fn listar_tarefas(tarefas: &[String]) {
 fn remover_tarefa(tarefas: &mut Vec<String>) {
     let mut entrada: String = String::new();
 
-    println!("Qual tarefa deseja remover: ");
-    stdin().read_line(&mut entrada).expect("Entrada inválida");
+    print!("\nQual tarefa deseja remover: ");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut entrada).expect("Entrada inválida");
 
     for (indice, tarefa) in tarefas.iter().enumerate() {
         if entrada.trim() == tarefa {
             tarefas.remove(indice);
-            println!("Tarefa removida.");
+            println!("\nTarefa removida.");
             return;
         }
     }
 
-    println!("Tarefa não encontrada.");
+    println!("\nTarefa não encontrada.");
 }
