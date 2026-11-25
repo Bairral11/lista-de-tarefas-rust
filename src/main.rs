@@ -17,6 +17,7 @@ fn main() {
         match op.trim() {
             "help" => help(),
             "mk" => nova_tarefa(&mut tarefas),
+            "c" => concluir_tarefa(&mut tarefas),
             "rm" => remover_tarefa(&mut tarefas),
             "ls" => listar_tarefas(&tarefas),
             "n" => count(&tarefas),
@@ -33,6 +34,7 @@ fn help() {
     println!("
 * help - Lista comandos.
 * mk - Criar nova tarefa.
+* c - Conclui tarefa.
 * rm - Remover tarefa.
 * ls - Listar tarefas.
 * n - Retornar numero de tarefas.
@@ -77,4 +79,8 @@ fn remover_tarefa(tarefas: &mut Vec<String>) {
     }
 
     println!("\nTarefa não encontrada.");
+}
+
+fn concluir_tarefa(_tarefas: &mut Vec<String>) {
+    todo!("implementar método de marcar tarefa como concluída");
 }
