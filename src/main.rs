@@ -1,7 +1,6 @@
 use std::io::{self, Write};
 
 fn main() {
-    let _entrada = String::new();
     let mut tarefas: Vec<String> = Vec::new(); 
     
     loop {
@@ -82,5 +81,14 @@ fn remover_tarefa(tarefas: &mut Vec<String>) {
 }
 
 fn concluir_tarefa(_tarefas: &mut Vec<String>) {
-    todo!("implementar método de marcar tarefa como concluída");
+    let mut entrada: String = String::new();
+
+    print!("\nQual tarefa deseja concluir: ");
+    io::stdout().flush().unwrap();
+
+    io::stdin().read_line(&mut entrada).expect("Entrada inválida");
+
+    todo!("Implementar busca e edição de tarefa na lista");
+
+    println!("\nTarefa não encontrada.");
 }
