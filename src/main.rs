@@ -88,7 +88,11 @@ fn concluir_tarefa(_tarefas: &mut Vec<String>) {
 
     io::stdin().read_line(&mut entrada).expect("Entrada inválida");
 
-    todo!("Implementar busca e edição de tarefa na lista");
-
+    for (indice, tarefa) in tarefas.iter().enumerate() {
+        if entrada.trim() == tarefa {
+            todo!("Implementar edição de tarefa na lista");
+        }
+    }
+    
     println!("\nTarefa não encontrada.");
 }
